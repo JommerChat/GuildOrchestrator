@@ -60,4 +60,4 @@ jobs:
             docker container stop parlantos-guild-orchestrator
             docker rm parlantos-guild-orchestrator
             docker pull ${{ secrets.DOCKER_REPO }}:latest
-            docker run -d -p 8083:8083 --name parlantos-guild-orchestrator ${{ secrets.DOCKER_REPO }}:latest
+            docker run -d -p 8083:8083 --name parlantos-guild-orchestrator --restart unless-stopped ${{ secrets.DOCKER_REPO }}:latest
