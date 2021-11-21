@@ -57,7 +57,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} registry.parlantos.com
-            docker container stop parlantos-guild-data-service
-            docker rm parlantos-guild-data-service
+            docker container stop parlantos-guild-orchestrator
+            docker rm parlantos-guild-orchestrator
             docker pull ${{ secrets.DOCKER_REPO }}:latest
-            docker run -d -p 8082:8082 --name parlantos-guild-data-service ${{ secrets.DOCKER_REPO }}:latest
+            docker run -d -p 8083:8083 --name parlantos-guild-orchestrator ${{ secrets.DOCKER_REPO }}:latest
