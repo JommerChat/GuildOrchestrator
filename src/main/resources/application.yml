@@ -1,5 +1,7 @@
 snowflake:
   baseUrl: ${snowflake_base_url}
+guildDataService:
+  baseUrl: ${guildDataService_base_url}
 okta:
   client:
     token: ${okta_token}
