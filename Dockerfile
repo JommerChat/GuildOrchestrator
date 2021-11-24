@@ -9,7 +9,7 @@ FROM openjdk:11-slim
 ARG SNOWFLAKE_BASE_URL
 ENV snowflake_base_url=${SNOWFLAKE_BASE_URL}
 ARG GUILD_BASE_URL
-ENV guild_base_url=${GUILD_BASE_URL}
+ENV guildDataService_base_url=${GUILD_BASE_URL}
 ARG OKTA_TOKEN
 ENV okta_token=${OKTA_TOKEN}
 ARG OKTA_ORG_URL
