@@ -14,7 +14,7 @@ public class SnowflakeDto {
 
   private final Logger logger = LoggerFactory.getLogger(SnowflakeDto.class);
 
-  @Value("${snowflake.base.url:https://api.parlantos.com/snowflake}")
+  @Value("${snowflake.base.url:https://api.parlantos.com}")
   private String snowflakeUrl;
 
   private final WebClient webClient = WebClient.create();

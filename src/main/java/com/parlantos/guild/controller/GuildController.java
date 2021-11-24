@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/guild")
 public class GuildController {
@@ -18,8 +20,8 @@ public class GuildController {
     }
 
     @GetMapping
-    public ResponseEntity<GuildEntity> fetchAllGuildsForUser(@RequestParam String memberId) {
-        return new ResponseEntity(this.guildService.fetchAllGuildsForUser(memberId), HttpStatus.OK);
+    public ResponseEntity<List<GuildEntity>> fetchAllGuildsForUser(@RequestParam String memberId) {
+        return new ResponseEntity<>(this.guildService.fetchAllGuildsForUser(memberId), HttpStatus.OK);
     }
 
 }
