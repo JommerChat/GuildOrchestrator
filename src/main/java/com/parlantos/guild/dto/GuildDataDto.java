@@ -1,12 +1,14 @@
 package com.parlantos.guild.dto;
 
 import com.parlantos.guild.models.GuildEntity;
+import com.parlantos.guild.models.MemberEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Component
@@ -33,6 +35,17 @@ public class GuildDataDto {
             this.logger.error("Encountered an error requesting the guilds that a member is in: {}", e.getMessage());
         }
         return null;
+    }
+
+    public List<MemberEntity> fetchMembersForGuild(String guildId) {
+        return this.webClient.get()
+                .uri(guildDataServiceBaseUrl + "/members", uriBuilder -> uriBuilder.
+                        queryParam("id", guildId)
+                        .build())
+                .retrieve()
+                .bodyToFlux(MemberEntity.class)
+                .collectList()
+                .block();
     }
 
 }
