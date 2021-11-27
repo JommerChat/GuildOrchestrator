@@ -2,6 +2,8 @@ package com.parlantos.guild.dto;
 
 import com.parlantos.guild.models.GuildEntity;
 import com.parlantos.guild.models.MemberEntity;
+import com.parlantos.guild.models.TextChannelEntity;
+import com.parlantos.guild.models.VoiceChannelEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,6 +46,24 @@ public class GuildDataDto {
                         .build())
                 .retrieve()
                 .bodyToFlux(MemberEntity.class)
+                .collectList()
+                .block();
+    }
+
+    public List<TextChannelEntity> fetchTextChannelsForGuild(String guildId) {
+        return this.webClient.get()
+                .uri(guildDataServiceBaseUrl + "/" + guildId + "/textChannels")
+                .retrieve()
+                .bodyToFlux(TextChannelEntity.class)
+                .collectList()
+                .block();
+    }
+
+    public List<VoiceChannelEntity> fetchVoiceChannelsForGuild(String guildId) {
+        return this.webClient.get()
+                .uri(guildDataServiceBaseUrl + "/" + guildId + "/voiceChannels")
+                .retrieve()
+                .bodyToFlux(VoiceChannelEntity.class)
                 .collectList()
                 .block();
     }
