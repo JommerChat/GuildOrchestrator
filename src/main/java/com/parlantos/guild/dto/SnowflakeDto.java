@@ -26,5 +26,4 @@ public class SnowflakeDto {
       .retrieve()
       .bodyToMono(BigInteger.class);
   }
-
 }
