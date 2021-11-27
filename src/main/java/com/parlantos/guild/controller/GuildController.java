@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Controller
 @RequestMapping("/guild")
@@ -25,9 +26,9 @@ public class GuildController {
         return new ResponseEntity<>(this.guildService.fetchAllGuildsForUser(memberId), HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<GuildContents> fetchInitialInfoForGuild(@RequestParam String guildId) {
-        return null;
+    @GetMapping("/initialInfo")
+    public ResponseEntity<GuildContents> fetchInitialInfoForGuild(@RequestParam String guildId) throws ExecutionException, InterruptedException {
+        return new ResponseEntity<>(this.guildService.fetchInitialContentForGuild(guildId), HttpStatus.OK);
     }
 
 }
