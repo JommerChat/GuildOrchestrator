@@ -1,5 +1,7 @@
 package com.parlantos.guild.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -10,6 +12,7 @@ public class TextChannelEntity {
 
   private LocalDateTime createdAt;
 
+  @JsonIgnore
   private GuildEntity guildEntity;
 
   private String title;

@@ -24,14 +24,14 @@ public class GuildDataDto {
 
     WebClient webClient = WebClient.create();
 
-    public List<GuildEntity> fetchAllGuildsForUser(String memberId) {
+    public List<BasicGuildInfo> fetchAllGuildsForUser(String memberId) {
         try {
             return this.webClient.get()
                     .uri(guildDataServiceBaseUrl + "/guilds", uriBuilder -> uriBuilder
                             .queryParam("memberId", memberId)
                             .build())
                     .retrieve()
-                    .bodyToFlux(GuildEntity.class)
+                    .bodyToFlux(BasicGuildInfo.class)
                     .collectList()
                     .block();
         } catch(Exception e) {

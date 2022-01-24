@@ -22,7 +22,7 @@ public class GuildService {
         this.guildDataDto = guildDataDto;
     }
 
-    public List<GuildEntity> fetchAllGuildsForUser(String memberId) {
+    public List<BasicGuildInfo> fetchAllGuildsForUser(String memberId) {
         return this.guildDataDto.fetchAllGuildsForUser(memberId);
     }
 

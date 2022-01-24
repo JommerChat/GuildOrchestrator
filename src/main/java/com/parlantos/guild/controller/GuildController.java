@@ -1,5 +1,6 @@
 package com.parlantos.guild.controller;
 
+import com.parlantos.guild.models.BasicGuildInfo;
 import com.parlantos.guild.models.GuildContents;
 import com.parlantos.guild.models.GuildEntity;
 import com.parlantos.guild.service.GuildService;
@@ -22,7 +23,7 @@ public class GuildController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GuildEntity>> fetchAllGuildsForUser(@RequestParam String memberId) {
+    public ResponseEntity<List<BasicGuildInfo>> fetchAllGuildsForUser(@RequestParam String memberId) {
         return new ResponseEntity<>(this.guildService.fetchAllGuildsForUser(memberId), HttpStatus.OK);
     }
 
