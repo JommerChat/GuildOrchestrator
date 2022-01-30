@@ -22,7 +22,7 @@ public class GuildController {
         this.guildService = guildService;
     }
 
-    @GetMapping
+    @GetMapping("fetchGuilds")
     public ResponseEntity<List<BasicGuildInfo>> fetchAllGuildsForUser(@RequestAttribute("memberId") String memberId) {
         return new ResponseEntity<>(this.guildService.fetchAllGuildsForUser(memberId), HttpStatus.OK);
     }
