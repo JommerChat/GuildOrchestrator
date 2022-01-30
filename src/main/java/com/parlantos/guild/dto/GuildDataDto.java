@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Member;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -33,6 +34,21 @@ public class GuildDataDto {
                     .retrieve()
                     .bodyToFlux(BasicGuildInfo.class)
                     .collectList()
+                    .block();
+        } catch(Exception e) {
+            this.logger.error("Encountered an error requesting the guilds that a member is in: {}", e.getMessage());
+        }
+        return null;
+    }
+
+    public BigInteger fetchIdForOktaId(String oktaId) {
+        try {
+            return this.webClient.get()
+                    .uri(guildDataServiceBaseUrl + "/member", uriBuilder -> uriBuilder
+                            .queryParam("oktaId", oktaId)
+                            .build())
+                    .retrieve()
+                    .bodyToMono(BigInteger.class)
                     .block();
         } catch(Exception e) {
             this.logger.error("Encountered an error requesting the guilds that a member is in: {}", e.getMessage());
