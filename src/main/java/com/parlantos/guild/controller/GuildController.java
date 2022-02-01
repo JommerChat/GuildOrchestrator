@@ -14,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 
 @Controller
 @RequestMapping("/guild")
+@CrossOrigin
 public class GuildController {
 
     private GuildService guildService;
