@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 
 @Controller
 @RequestMapping("/guild")
-@CrossOrigin
+@CrossOrigin(origins= "*", allowedHeaders = "*")
 public class GuildController {
 
     private GuildService guildService;
