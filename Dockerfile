@@ -3,6 +3,8 @@ RUN mkdir -p /workspace
 WORKDIR /workspace
 COPY pom.xml /workspace
 COPY src /workspace/src
+RUN echo quit | openssl s_client -showcerts -servername parlantos.com -connect parlantos.com:443 2>/dev/null | awk '/BEGIN/,/END/{ if(/BEGIN/){c=""};c=c $0 "\n"}END{print c}' >ca.crt || true
+RUN keytool -importcert -alias startssl -keystore /usr/local/openjdk-11/lib/security/cacerts -storepass changeit -file ca.crt -noprompt
 RUN mvn -B package --file pom.xml -DskipTests
 
 FROM openjdk:11-slim
