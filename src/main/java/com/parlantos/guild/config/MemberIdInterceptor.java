@@ -24,12 +24,17 @@ public class MemberIdInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws UnsupportedEncodingException, JsonProcessingException {
-        String accessToken = request.getHeader("Authorization");
-        this.logger.debug("fetched access token from request: {}", accessToken);
-        var jwt = decodeJwt(accessToken);
-        this.logger.debug("decoded jwt is: {}", jwt.toString());
-        BigInteger id = this.guildDataDto.fetchIdForOktaId(jwt.getUid());
-        request.setAttribute("memberId", id.toString());
+        try {
+            String accessToken = request.getHeader("Authorization");
+            this.logger.debug("fetched access token from request: {}", accessToken);
+            var jwt = decodeJwt(accessToken);
+            this.logger.debug("decoded jwt is: {}", jwt.toString());
+            BigInteger id = this.guildDataDto.fetchIdForOktaId(jwt.getUid());
+            request.setAttribute("memberId", id.toString());
+        } catch(Exception e) {
+            logger.error("Encountered exception: {}", e.getMessage());
+            return false;
+        }
         return true;
     }
 
