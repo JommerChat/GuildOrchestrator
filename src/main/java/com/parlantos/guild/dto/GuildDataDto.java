@@ -18,7 +18,7 @@ import java.util.concurrent.CompletableFuture;
 @Component
 public class GuildDataDto {
 
-    @Value("${guildDataService.baseUrl:https://api.parlantos.com/guild/data}")
+    @Value("${guildDataService.baseUrl:https://api.jommer.chat/guild/data}")
     private String guildDataServiceBaseUrl;
 
     Logger logger = LoggerFactory.getLogger(GuildDataDto.class);
