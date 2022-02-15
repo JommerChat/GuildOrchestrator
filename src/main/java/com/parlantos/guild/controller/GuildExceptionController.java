@@ -14,4 +14,9 @@ public class GuildExceptionController {
   public ResponseEntity<String> exception(ValidationException exception) {
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
   }
+
+  @ExceptionHandler(value = Exception.class)
+  public ResponseEntity<String> generalException(Exception exception) {
+    return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }
