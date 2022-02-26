@@ -1,6 +1,5 @@
-package com.parlantos.guild.Controller;
+package com.parlantos.guild.controller;
 
-import com.parlantos.guild.controller.GuildExceptionController;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

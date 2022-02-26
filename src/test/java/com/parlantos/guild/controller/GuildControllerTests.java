@@ -1,6 +1,5 @@
-package com.parlantos.guild.Controller;
+package com.parlantos.guild.controller;
 
-import com.parlantos.guild.controller.GuildController;
 import com.parlantos.guild.models.*;
 import com.parlantos.guild.service.GuildService;
 import org.junit.jupiter.api.Test;
