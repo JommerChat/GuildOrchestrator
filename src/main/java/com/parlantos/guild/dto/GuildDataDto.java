@@ -18,12 +18,16 @@ import java.util.concurrent.CompletableFuture;
 @Component
 public class GuildDataDto {
 
-    @Value("${guildDataService.baseUrl:https://api.jommer.chat/guild/data}")
-    private String guildDataServiceBaseUrl;
+
+    private final String guildDataServiceBaseUrl;
 
     Logger logger = LoggerFactory.getLogger(GuildDataDto.class);
 
     WebClient webClient = WebClient.create();
+
+    GuildDataDto(@Value("${guildDataService.baseUrl:https://api.jommer.chat/guild/data}") String guildDataServiceBaseUrl) {
+        this.guildDataServiceBaseUrl = guildDataServiceBaseUrl;
+    }
 
     public List<BasicGuildInfo> fetchAllGuildsForUser(String memberId) {
         try {

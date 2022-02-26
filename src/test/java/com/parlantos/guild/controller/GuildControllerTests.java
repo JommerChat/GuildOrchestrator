@@ -1,4 +1,4 @@
-package com.parlantos.guild;
+package com.parlantos.guild.Controller;
 
 import com.parlantos.guild.controller.GuildController;
 import com.parlantos.guild.models.*;
