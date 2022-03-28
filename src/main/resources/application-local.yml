@@ -1,14 +1,14 @@
 snowflake:
-  baseUrl: ${snowflake_base_url}
+  baseUrl: https://api.jommer.chat
 guildDataService:
-  baseUrl: ${guildDataService_base_url}
+  baseUrl: https://api.jommer.chat/guild/data
 okta:
   client:
-    token: ${okta_token}
-    org-url: ${okta_org_url}
+    token: test
+    org-url: test
   oauth2:
-    issuer: ${okta_issuer}
-    clientId: ${okta_clientId}
-    clientSecret: ${okta_clientSecret}
+    issuer: test
+    clientId: test
+    clientSecret: test
 server:
   port: 8083

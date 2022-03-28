@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Member;
@@ -45,19 +46,14 @@ public class GuildDataDto {
         return null;
     }
 
-    public BigInteger fetchIdForOktaId(String oktaId) {
-        try {
-            return this.webClient.get()
-                    .uri(guildDataServiceBaseUrl + "/member", uriBuilder -> uriBuilder
-                            .queryParam("oktaId", oktaId)
-                            .build())
-                    .retrieve()
-                    .bodyToMono(BigInteger.class)
-                    .block();
-        } catch(Exception e) {
-            this.logger.error("Encountered an error requesting the guilds that a member is in: {}", e.getMessage());
-        }
-        return null;
+    public BigInteger fetchIdForOktaId(String oktaId) throws WebClientResponseException {
+        return this.webClient.get()
+                .uri(guildDataServiceBaseUrl + "/member", uriBuilder -> uriBuilder
+                        .queryParam("oktaId", oktaId)
+                        .build())
+                .retrieve()
+                .bodyToMono(BigInteger.class)
+                .block();
     }
 
     @Async
@@ -73,6 +69,7 @@ public class GuildDataDto {
         return new AsyncResult<>(memberList).completable();
     }
 
+    @Async
     public CompletableFuture<List<TextChannelEntity>> fetchTextChannelsForGuild(String guildId) {
         List<TextChannelEntity> textChannels = this.webClient.get()
                 .uri(guildDataServiceBaseUrl + "/" + guildId + "/textChannels")
@@ -83,6 +80,7 @@ public class GuildDataDto {
         return new AsyncResult<>(textChannels).completable();
     }
 
+    @Async
     public CompletableFuture<List<VoiceChannelEntity>> fetchVoiceChannelsForGuild(String guildId) {
         List<VoiceChannelEntity> voiceChannels = this.webClient.get()
                 .uri(guildDataServiceBaseUrl + "/" + guildId + "/voiceChannels")
@@ -93,6 +91,7 @@ public class GuildDataDto {
         return new AsyncResult<>(voiceChannels).completable();
     }
 
+    @Async
     public CompletableFuture<List<MessageEntity>> fetchMessagesForTextChannel(String textChannelId, String amount) {
         List<MessageEntity> messages = this.webClient.get()
                 .uri(guildDataServiceBaseUrl + "/" + textChannelId + "/" + "messages", uriBuilder ->

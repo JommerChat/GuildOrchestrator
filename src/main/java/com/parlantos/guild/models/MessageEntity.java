@@ -1,5 +1,6 @@
 package com.parlantos.guild.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.math.BigInteger;
@@ -24,5 +25,6 @@ public class MessageEntity {
 
   private MemberEntity memberEntity;
 
+  @JsonIgnore
   private TextChannelEntity textChannelEntity;
 }
