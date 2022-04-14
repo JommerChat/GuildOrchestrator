@@ -14,8 +14,8 @@ jobs:
 
     runs-on: self-hosted
     env:
-      SNOWFLAKE_BASE_URL: ${{ secrets.SNOWFLAKE_BASE_URL}} 
-      GUILD_BASE_URL: ${{ secrets.GUILD_BASE_URL }}
+      snowflake_base_url: ${{ secrets.SNOWFLAKE_BASE_URL}} 
+      guildDataService_base_url: ${{ secrets.GUILD_BASE_URL }}
       OKTA_TOKEN: ${{ secrets.OKTA_TOKEN }}
       OKTA_ORG_URL: ${{ secrets.OKTA_ORG_URL }} 
       OKTA_ISSUER: ${{ secrets.OKTA_ISSUER }} 
