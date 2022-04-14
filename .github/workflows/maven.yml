@@ -13,6 +13,14 @@ jobs:
   build:
 
     runs-on: self-hosted
+    env:
+      SNOWFLAKE_BASE_URL: ${{ secrets.SNOWFLAKE_BASE_URL}} 
+      GUILD_BASE_URL: ${{ secrets.GUILD_BASE_URL }}
+      OKTA_TOKEN: ${{ secrets.OKTA_TOKEN }}
+      OKTA_ORG_URL: ${{ secrets.OKTA_ORG_URL }} 
+      OKTA_ISSUER: ${{ secrets.OKTA_ISSUER }} 
+      OKTA_CLIENTID: ${{ secrets.OKTA_CLIENTID }} 
+      OKTA_CLIENTSECRET: ${{ secrets.OKTA_CLIENTSECRET }}   
 
     steps:
     - uses: actions/checkout@v2
